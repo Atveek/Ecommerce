@@ -7,13 +7,17 @@ const userSchema = mongoose.Schema({
   },
   email: {
     type: String,
+    unique: [true, , "email already exist"],
     required: true,
   },
   password: {
     type: String,
     required: true,
-    minlength: 8,
-    maxlength: 15,
+  },
+  role: {
+    type: String,
+    enum: ["buyer", "seller"],
+    required: true,
   },
 });
 
