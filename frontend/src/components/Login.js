@@ -83,7 +83,10 @@ export default function Login() {
           <div>
             <p>
               Not a Member ?{" "}
-              <Link to="/signup" className=" hover:text-amber-200">
+              <Link
+                to="/signup"
+                className="text-[#4ee7e4] font-bold hover:text-amber-200 p-2"
+              >
                 Signup
               </Link>
             </p>
