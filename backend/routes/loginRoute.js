@@ -18,10 +18,10 @@ route.post("/", async (req, res) => {
         );
         res.json({ token });
       } else {
-        res.status(404).send("invalid  password");
+        res.status(404).send({ error: "Invalid username or password." });
       }
     } else {
-      res.status(404).send("User not found");
+      res.status(404).send({ error: "Invalid username or password." });
     }
   } catch (e) {
     console.log(e);

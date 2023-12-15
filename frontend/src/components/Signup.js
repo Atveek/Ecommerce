@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
+
 const initial = {
+  name: "",
   email: "",
   password: "",
+  role: "buyer",
 };
-
-export default function Login() {
+export default function Signup() {
   const [user, setUser] = useState(initial);
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -18,7 +20,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/login", user);
+      const response = await axios.post("/user", user);
       if (response.status === 200) {
         // Handle successful login here
         setErrorMessage(""); // Clear any previous error messages
@@ -29,7 +31,7 @@ export default function Login() {
         navigate("/home");
       }
     } catch (error) {
-      setErrorMessage("Invalid username or password.");
+      setErrorMessage("Email already exist.");
       console.error("Error sending data:", error);
     }
     // setUser(initial);
@@ -38,11 +40,23 @@ export default function Login() {
     <>
       <div className="flex flex-1 justify-center items-center w-full h-screen bg-blue-500 ">
         <form
-          className="flex flex-col justify-center space-y-6 w-[30rem] bg-blue-600 h-[23rem] rounded-2xl shadow1"
+          className="flex flex-col justify-center space-y-6 w-[30rem] bg-blue-600 h-[auto] rounded-2xl shadow1 py-5"
           onSubmit={submit}
         >
           <div>
-            <h1 className="text-2xl font-bold">Login</h1>
+            <h1 className="text-2xl font-bold">Signup</h1>
+          </div>
+          <div>
+            <label className="text-xl">Name : </label>
+            <input
+              className="text-xl px-2 py-1 ml-4 rounded-md outline-1"
+              type="text"
+              name="name"
+              required
+              value={user.name}
+              placeholder="Full name"
+              onChange={handleChange}
+            />
           </div>
           <div>
             <label className="text-xl">Email : </label>
@@ -50,10 +64,10 @@ export default function Login() {
               className="text-xl px-2 py-1 ml-4 rounded-md outline-1"
               type="email"
               name="email"
+              required
               value={user.email}
               placeholder="xyz@email.com"
               autoComplete="username"
-              required
               onChange={handleChange}
             />
           </div>
@@ -82,9 +96,9 @@ export default function Login() {
           </div>
           <div>
             <p>
-              Not a Member ?{" "}
-              <Link to="/signup" className=" hover:text-amber-200">
-                Signup
+              already Member ?{" "}
+              <Link to="/login" className=" hover:text-amber-200">
+                Login
               </Link>
             </p>
           </div>
