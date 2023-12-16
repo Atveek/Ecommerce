@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-
+import { getUserRole } from "./getUserRole";
 const initial = {
   name: "",
   email: "",
@@ -28,7 +28,9 @@ export default function Signup() {
         const token = response.data.token;
         console.log(token);
         Cookies.set("token", token, { expires: 1 / 48, path: "/" });
-        navigate("/home");
+        const role = getUserRole();
+        if (role === "buyer") navigate("/account");
+        if (role === "seller") navigate("/seller");
       }
     } catch (error) {
       setErrorMessage("Email already exist.");
@@ -40,7 +42,7 @@ export default function Signup() {
     <>
       <div className="flex flex-1 justify-center items-center w-full h-screen bg-blue-500 ">
         <form
-          className="flex flex-col justify-center space-y-6 w-[30rem] bg-blue-600 h-[auto] rounded-2xl shadow1 py-5"
+          className="flex flex-col text-center justify-center space-y-6 w-[30rem] bg-blue-600 h-[auto] rounded-2xl shadow1 py-5"
           onSubmit={submit}
         >
           <div>
@@ -83,6 +85,18 @@ export default function Signup() {
               autoComplete="current-password"
               onChange={handleChange}
             />
+          </div>
+          <div>
+            <select
+              name="role"
+              className="px-5 py-2 font-semibold rounded-md"
+              onChange={handleChange}
+            >
+              <option value="buyer" selected>
+                Buyer
+              </option>
+              <option value="seller">Seller</option>
+            </select>
           </div>
           {errorMessage && (
             <p className="text-red-900 font-bold">{errorMessage}</p>
