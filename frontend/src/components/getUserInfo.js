@@ -1,13 +1,12 @@
-// src/utils/authUtils.js
 import Cookies from "js-cookie";
 import { decodeToken } from "react-jwt";
 
-export const getUserRole = () => {
+const getUserRole = () => {
   const jwtToken = Cookies.get("token");
   if (jwtToken) {
     try {
-      const decodedToken1 = decodeToken(jwtToken);
-      return decodedToken1.role;
+      const decodedToken = decodeToken(jwtToken);
+      return decodedToken.role;
     } catch (error) {
       console.error("Error decoding JWT token:", error);
     }
@@ -15,3 +14,10 @@ export const getUserRole = () => {
 
   return null;
 };
+
+const getToken = () => {
+  const jwtToken = Cookies.get("token");
+  return jwtToken || null;
+};
+
+export { getUserRole, getToken };

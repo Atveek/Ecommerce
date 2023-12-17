@@ -13,6 +13,7 @@ require("../config/conn");
 //import routes
 const user = require("../routes/userRoute");
 const login = require("../routes/loginRoute");
+const product = require("../routes/productRoute");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 //routes
 app.use("/user", user);
 app.use("/login", login);
+app.use("/product", product);
 
 app.listen(port, () => {
   console.log(`${port} listing..`);

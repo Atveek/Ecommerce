@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { getUserRole } from "./getUserRole";
+import { getUserRole } from "./getUserInfo";
 const initial = {
   name: "",
   email: "",
@@ -27,9 +27,9 @@ export default function Signup() {
         console.log("Login successful");
         const token = response.data.token;
         console.log(token);
-        Cookies.set("token", token, { expires: 1 / 48, path: "/" });
+        Cookies.set("token", token, { expires: 1, path: "/" });
         const role = getUserRole();
-        if (role === "buyer") navigate("/account");
+        if (role === "buyer") navigate("/");
         if (role === "seller") navigate("/seller");
       }
     } catch (error) {
