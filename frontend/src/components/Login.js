@@ -38,7 +38,7 @@ export default function Login() {
     // setUser(initial);
   };
   return (
-    <div className="flex flex-1 justify-center items-center w-full h-screen bg-blue-500 ">
+    <div className="flex flex-1 justify-center items-center w-full flex-grow bg-blue-500 ">
       <form
         className="flex flex-col justify-center space-y-6 w-[30rem] text-center bg-blue-600 h-[23rem] rounded-2xl shadow1"
         onSubmit={submit}

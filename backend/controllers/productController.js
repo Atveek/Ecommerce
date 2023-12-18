@@ -1,14 +1,18 @@
+const { productList } = require("../model/productSchema");
+
 const { findproduct, findOneproduct } = require("../services/productService");
 
 async function addProduct(req, res) {
   try {
     const user = req.user.userid;
-    const { title, img, category, description, price, stock } = req.body;
+    const { title, img, category, subcategory, description, price, stock } =
+      req.body;
     console.log(user);
     const product = new productList({
       title,
       img,
       category,
+      subcategory,
       description,
       price,
       stock,
@@ -45,8 +49,24 @@ async function allProduct(req, res) {
 
 async function selectedProduct(req, res) {
   try {
+    const subcategory = req.params.subcategory;
+    console.log("controller called...");
     const product = await findOneproduct({
+      subcategory,
       _id: req.params.productid,
+    });
+    console.log(product);
+    res.json(product);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send("product can't shaw");
+  }
+}
+
+async function selectedCategory(req, res) {
+  try {
+    const product = await findproduct({
+      subcategory: req.params.subcategory,
     });
     res.json(product);
   } catch (err) {
@@ -55,4 +75,10 @@ async function selectedProduct(req, res) {
   }
 }
 
-module.exports = { addProduct, sellerProduct, allProduct, selectedProduct };
+module.exports = {
+  addProduct,
+  sellerProduct,
+  allProduct,
+  selectedProduct,
+  selectedCategory,
+};

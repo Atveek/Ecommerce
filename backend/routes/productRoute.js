@@ -6,6 +6,7 @@ const {
   addProduct,
   allProduct,
   selectedProduct,
+  selectedCategory,
 } = require("../controllers/productController");
 const routes = express.Router();
 
@@ -15,8 +16,8 @@ routes.get("/seller", authSeller, sellerProduct);
 
 //buyer's product route
 routes.get("/buyer", authBuyer, allProduct);
-
+routes.get("/:subcategory", selectedCategory);
 //combine product route
-routes.get("/:productid", selectedProduct);
+routes.get("/:subcategory/:productid", selectedProduct);
 
 module.exports = routes;

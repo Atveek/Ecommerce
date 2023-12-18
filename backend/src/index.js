@@ -14,6 +14,7 @@ require("../config/conn");
 const user = require("../routes/userRoute");
 const login = require("../routes/loginRoute");
 const product = require("../routes/productRoute");
+const category = require("../routes/categoryRoute");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use("/user", user);
 app.use("/login", login);
 app.use("/product", product);
+app.use("/category", category);
 
 app.listen(port, () => {
   console.log(`${port} listing..`);

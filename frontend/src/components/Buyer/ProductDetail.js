@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 
 export default function ProductDetail() {
   const [product, setProduct] = useState({});
-  const { productid } = useParams();
+  const { subcategory, productid } = useParams();
   console.log(productid);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`/product/${productid}`);
+        const response = await fetch(`/product/${subcategory}/${productid}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }
@@ -24,7 +24,7 @@ export default function ProductDetail() {
     };
 
     fetchProduct();
-  }, [productid]);
+  }, [subcategory, productid]);
 
   return (
     <div>

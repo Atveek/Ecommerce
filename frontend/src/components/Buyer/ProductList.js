@@ -1,11 +1,12 @@
 // ProductList.js
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getToken } from "../getUserInfo";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const { category, subcategory } = useParams();
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -13,7 +14,7 @@ const ProductList = () => {
         console.log(token);
 
         // Fetch product data from your server with JWT token in the header
-        const response = await fetch("/product/buyer", {
+        const response = await fetch(`/product/${subcategory}`, {
           headers: {
             token: `${token}`,
             "Content-Type": "application/json",
@@ -30,14 +31,14 @@ const ProductList = () => {
       }
     };
     fetchProducts();
-  }, []);
+  }, [subcategory]);
 
   const handleClick = (productid) => {
-    navigate(`/products/${productid}`);
+    navigate(`/${category}/${subcategory}/${productid}`);
   };
 
   return (
-    <div className="flex flex-col justify-center  bg-white">
+    <div className="flex flex-col flex-grow justify-center items-center bg-white">
       <h1>Product List</h1>
       <ul className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {Array.isArray(products) &&

@@ -40,7 +40,7 @@ export default function Signup() {
   };
   return (
     <>
-      <div className="flex flex-1 justify-center items-center w-full h-screen bg-blue-500 ">
+      <div className="flex flex-1 justify-center items-center w-full flex-grow bg-blue-500 ">
         <form
           className="flex flex-col text-center justify-center space-y-6 w-[30rem] bg-blue-600 h-[auto] rounded-2xl shadow1 py-5"
           onSubmit={submit}
