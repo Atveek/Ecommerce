@@ -31,7 +31,7 @@ export default function Subcategory() {
     navigate(`/${category}/${Subcategory}`);
   };
   return (
-    <div className=" flex-grow flex flex-col justify-center items-center bg-white">
+    <div className=" flex-grow flex flex-col justify-center items-cente">
       <ul className="grid grid-flow-row grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-5">
         {Array.isArray(subcategorys) &&
           subcategorys.map((Subcategory) => {

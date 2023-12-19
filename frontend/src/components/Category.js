@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getToken } from "./getUserInfo";
 import { useNavigate } from "react-router-dom";
+// import image from "	https://rukminim1.flixcart.com/flap/88/88/image/69c6589653afdb9a.png?q=100";
 
 export default function Category() {
   const [categorys, setCategorys] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const getcategory = async () => {
       try {
@@ -30,18 +32,27 @@ export default function Category() {
   const handleClick = (category) => {
     navigate(`/${category}`);
   };
+
   return (
-    <div className="flex flex-col flex-grow justify-center items-center bg-white">
-      <ul className="grid grid-flow-row grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-5">
+    <div
+      // ref={scrollRef}
+      className="flex flex-col justify-center items-center bg-white mt-3 h-auto mx-3 rounded-md"
+    >
+      <ul className="grid grid-flow-col gap-3 no-scrollbar scroll scroll-smooth py-2 px-3 w-full whitespace-nowrap overflow-x-scroll">
         {Array.isArray(categorys) &&
           categorys.map((Category) => {
             return (
               <li
-                className="p-5 shadow1 rounded-xl hover:bg-gray-300 hover:bottom-1 duration-500 cursor-pointer"
+                className="inline-flex flex-col justify-center items-center text-base sm:text-lg px-2 py-2 rounded-lg hover:bg-gray-300 hover:bottom-1 duration-500 cursor-pointer"
                 key={Category._id}
                 onClick={() => handleClick(Category.name)}
               >
-                {Category.name}
+                <img
+                  className="w-24 rounded-md aspect-square object-contain"
+                  src={Category.img}
+                  alt="i"
+                />
+                <p>{Category.name}</p>
               </li>
             );
           })}

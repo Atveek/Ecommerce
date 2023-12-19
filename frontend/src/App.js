@@ -9,23 +9,31 @@ import BuyerAccount from "./components/Buyer/BuyerAccount";
 import ProductList from "./components/Buyer/ProductList";
 import ProductDetail from "./components/Buyer/ProductDetail";
 import Navbar from "./components/Navbar";
-import { useEffect } from "react";
-import { getToken } from "./components/getUserInfo";
+import { useState, useEffect } from "react";
+import { getToken, getUserRole } from "./components/getUserInfo";
 import Category from "./components/Category";
 import Subcategory from "./components/Subcategory";
 // import SidePanel from "./components/SidePanel";
 
 function App() {
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = getToken();
     if (!token) {
       navigate("/login");
+      setUser("");
+    } else {
+      const role = getUserRole();
+      setUser(role);
     }
   }, [navigate]);
+
   return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
+    <div className="flex flex-col h-screen bg-gray-200">
+      <Navbar user={user} />
+      {user === "buyer" && <Category />}
       {/* <div className="grid grid-flow-row gap-2"> */}
       {/* <SidePanel /> */}
       <Routes>
@@ -36,7 +44,7 @@ function App() {
         {/* {/Buyer Routes } */}
 
         <Route exact path="/account" element={<BuyerAccount />} />
-        <Route exact path="/" element={<Category />} />
+        {/* <Route exact path="/" element={<Category />} /> */}
         <Route exact path="/:category" element={<Subcategory />} />
         <Route exact path="/:category/:subcategory" element={<ProductList />} />
         <Route
