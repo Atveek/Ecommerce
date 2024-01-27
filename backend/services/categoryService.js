@@ -9,14 +9,4 @@ async function findcategory(condition) {
   }
 }
 
-async function findsubcategory(condition) {
-  try {
-    const product = await category.findOne(condition);
-    console.log(product);
-    return product;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-module.exports = { findcategory, findsubcategory };
+module.exports = { findcategory };

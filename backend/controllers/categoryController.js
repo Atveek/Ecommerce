@@ -1,8 +1,5 @@
 const category = require("../model/categorySchema");
-const {
-  findcategory,
-  findsubcategory,
-} = require("../services/categoryService");
+const { findcategory } = require("../services/categoryService");
 
 async function addCategory(req, res) {
   try {
@@ -23,15 +20,5 @@ async function getCategory(req, res) {
     res.status(404).send(err);
   }
 }
-async function getSubategory(req, res) {
-  try {
-    const result = await findsubcategory({ name: req.params.category });
-    console.log(result);
-    const Subcategory = result.subcategory;
-    res.json(Subcategory);
-  } catch (err) {
-    res.status(404).send(err);
-  }
-}
 
-module.exports = { addCategory, getCategory, getSubategory };
+module.exports = { addCategory, getCategory };

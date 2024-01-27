@@ -5,17 +5,32 @@ const { findproduct, findOneproduct } = require("../services/productService");
 async function addProduct(req, res) {
   try {
     const user = req.user.userid;
-    const { title, img, category, subcategory, description, price, stock } =
-      req.body;
-    console.log(user);
-    const product = new productList({
+    const {
       title,
-      img,
       category,
-      subcategory,
       description,
       price,
       stock,
+      brand,
+      discountPercentage,
+      rating,
+      thumbnail,
+      images,
+    } = req.body;
+
+    console.log(user);
+
+    const product = new productList({
+      title,
+      category,
+      description,
+      price,
+      stock,
+      brand,
+      discountPercentage,
+      rating,
+      thumbnail,
+      images,
       seller: user,
     });
     const result = await product.save();
@@ -49,10 +64,7 @@ async function allProduct(req, res) {
 
 async function selectedProduct(req, res) {
   try {
-    const subcategory = req.params.subcategory;
-    console.log("controller called...");
     const product = await findOneproduct({
-      subcategory,
       _id: req.params.productid,
     });
     console.log(product);
@@ -66,7 +78,7 @@ async function selectedProduct(req, res) {
 async function selectedCategory(req, res) {
   try {
     const product = await findproduct({
-      subcategory: req.params.subcategory,
+      category: req.params.category,
     });
     res.json(product);
   } catch (err) {

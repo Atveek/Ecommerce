@@ -9,7 +9,7 @@ const initial = {
   password: "",
   role: "buyer",
 };
-export default function Signup() {
+export default function Signup({ signup }) {
   const [user, setUser] = useState(initial);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -40,9 +40,9 @@ export default function Signup() {
   };
   return (
     <>
-      <div className="flex flex-1 justify-center items-center w-full flex-grow bg-blue-500 ">
+      <div className="flex flex-1 justify-center items-center w-full flex-grow bg-gray-200 ">
         <form
-          className="flex flex-col text-center justify-center space-y-6 w-[30rem] bg-blue-600 h-[auto] rounded-2xl shadow1 py-5"
+          className="flex flex-col text-center justify-center space-y-6 w-[30rem] bg-gray-100 h-[auto] rounded-2xl shadow1 py-5"
           onSubmit={submit}
         >
           <div>
@@ -51,7 +51,7 @@ export default function Signup() {
           <div>
             <label className="text-xl">Name : </label>
             <input
-              className="text-xl px-2 py-1 ml-4 rounded-md outline-1"
+              className="text-xl px-2 bg-gray-200 border border-black py-1 ml-4 rounded-md outline-1"
               type="text"
               name="name"
               required
@@ -63,7 +63,7 @@ export default function Signup() {
           <div>
             <label className="text-xl">Email : </label>
             <input
-              className="text-xl px-2 py-1 ml-4 rounded-md outline-1"
+              className="text-xl px-2 bg-gray-200 border border-black py-1 ml-4 rounded-md outline-1"
               type="email"
               name="email"
               required
@@ -76,7 +76,7 @@ export default function Signup() {
           <div>
             <label className="text-xl">Password : </label>
             <input
-              className="text-xl px-2 py-1 ml-4 rounded-md outline-1"
+              className="text-xl px-2 bg-gray-200 border border-black py-1 ml-4 rounded-md outline-1"
               name="password"
               value={user.password}
               type="password"
@@ -89,7 +89,7 @@ export default function Signup() {
           <div>
             <select
               name="role"
-              className="px-5 py-2 font-semibold rounded-md"
+              className="px-5 py-2 bg-gray-200 border border-black font-semibold rounded-md"
               onChange={handleChange}
             >
               <option value="buyer" selected>
@@ -113,7 +113,10 @@ export default function Signup() {
               already Member ?{" "}
               <Link
                 to="/login"
-                className="text-[#4ee7e4] font-bold hover:text-amber-200 p-2"
+                className="text-black text-lg font-bold hover:text-red-800 p-2"
+                onClick={() => {
+                  signup("/login");
+                }}
               >
                 Login
               </Link>

@@ -16,8 +16,9 @@ routes.get("/seller", authSeller, sellerProduct);
 
 //buyer's product route
 routes.get("/buyer", authBuyer, allProduct);
-routes.get("/:subcategory", selectedCategory);
+routes.get("/:category", selectedCategory);
 //combine product route
-routes.get("/:subcategory/:productid", selectedProduct);
+routes.get("/:category/:productid", selectedProduct);
+routes.get("/:productid", selectedProduct);
 
 module.exports = routes;
