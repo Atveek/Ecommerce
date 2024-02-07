@@ -47,6 +47,7 @@ async function shawOrder(req, res) {
       });
       const productdetail = {};
       productdetail.product = productItem.title; // Use 'product' as key for product title
+      productdetail.id = orderItem._id; // Use 'product' as key for product title
       productdetail.quantity = orderItem.quantity; // Access quantity from orderItem
       productdetail.status = orderItem.status; // Access status from orderItem
       productdetail.date = new Date(orderItem.date).toLocaleDateString("en-GB");
