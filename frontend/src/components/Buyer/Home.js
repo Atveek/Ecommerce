@@ -5,6 +5,7 @@ import ProductList from "./ProductList";
 import { Routes, Route } from "react-router-dom";
 import Productitem from "./Productitem";
 import AddCart from "./AddCart";
+import Ordered from "./Ordered";
 
 export default function Home({ user }) {
   return (
@@ -13,7 +14,8 @@ export default function Home({ user }) {
       <Category />
       <Routes>
         <Route exact path="/" element={<ProductList />}></Route>
-        <Route exact path="/cart" element={<AddCart />} />
+        <Route path="/cart" element={<AddCart />} />
+        <Route path="/order" element={<Ordered />} />
         <Route exact path="/:category" element={<ProductList />} />
         <Route exact path="/:productid" element={<Productitem />} />
         <Route exact path="/:category/:productid" element={<Productitem />} />

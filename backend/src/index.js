@@ -18,6 +18,7 @@ const login = require("../routes/loginRoute");
 const product = require("../routes/productRoute");
 const category = require("../routes/categoryRoute");
 const cart = require("../routes/cartRoute");
+const order = require("../routes/orderRoute");
 const morgan = require("morgan");
 const colors = require("colors");
 
@@ -33,6 +34,7 @@ app.use("/login", login);
 app.use("/product", product);
 app.use("/category", category);
 app.use("/cart", cart);
+app.use("/order", order);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

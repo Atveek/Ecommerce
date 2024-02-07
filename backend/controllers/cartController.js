@@ -100,4 +100,13 @@ async function updateQuantity(req, res) {
   }
 }
 
-module.exports = { addCart, allCartProduact, updateQuantity };
+async function deleteCart(user) {
+  try {
+    const result = await cart.deleteOne({ user });
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { addCart, allCartProduact, updateQuantity, deleteCart };
