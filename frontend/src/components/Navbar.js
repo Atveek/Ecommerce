@@ -45,6 +45,7 @@ class Navbar extends Component {
     this.setState((prevState) => ({
       isSearch: !prevState.isSearch,
     }));
+    window.scrollTo({ top: "0px", left: "0px", behavior: "smooth" });
     console.log("handleSearch...", this.isSearch);
   }
   render() {
@@ -60,14 +61,17 @@ class Navbar extends Component {
           {user === "buyer" && (
             <ul className="flex w-full flex-col bg-teal-500 sm:flex-row sd:gap-2 lg:gap-3 justify-around m-0 py-5 text-xl bg-b">
               <div className="flex  gap-7 justify-between px-5 text-xl ">
-                <h2 className="md:text-base  lg:text-2xl font-bold text-left py-2">
+                <Link
+                  className="md:text-base  lg:text-2xl font-bold text-left py-2"
+                  to="/"
+                >
                   <img
                     className="w-8 inline-block"
-                    src="image/icon.png"
+                    src="/image/icon.png"
                     alt="icon"
                   />
                   LuxeCart
-                </h2>
+                </Link>
                 <div className="flex flex-row gap-4">
                   <button
                     className="block sm:hidden m-0"
@@ -75,7 +79,7 @@ class Navbar extends Component {
                   >
                     <img
                       className="w-6 m-0"
-                      src="image/search.png"
+                      src="/image/search.png"
                       alt="search"
                     />
                   </button>
@@ -117,7 +121,7 @@ class Navbar extends Component {
                         <Link to="/account">Account</Link>
                       </li>
                       <li>
-                        <Link to="/products">Products</Link>
+                        <Link to="/cart">Cart</Link>
                       </li>
                       <li>
                         <Link to="/order">Orders</Link>
@@ -177,7 +181,8 @@ class Navbar extends Component {
               className="md:hidden inline-block px-5 py-1 text-center text-white bg-black "
             >
               Search
-            </button>{" "}
+            </button>
+            {""}
           </form>
         )}
       </>

@@ -1,7 +1,7 @@
 // ProductList.js
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getToken } from "../getUserInfo";
+import { getToken } from "../Auth/getUserInfo";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);

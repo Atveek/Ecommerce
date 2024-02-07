@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getToken } from "./getUserInfo";
+import { getToken } from "./Auth/getUserInfo";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Category() {
@@ -11,7 +11,11 @@ export default function Category() {
   useEffect(() => {
     const categoryProductPattern = /^\/\w+\/\w+$/; // Regex for /:category/:productid
 
-    if (categoryProductPattern.test(location.pathname)) {
+    if (
+      categoryProductPattern.test(location.pathname) ||
+      location.pathname === "/cart" ||
+      location.pathname === "/order"
+    ) {
       setImage(false);
     } else {
       setImage(true);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { getUserRole } from "./getUserInfo";
+import { getUserRole } from "./Auth/getUserInfo";
 const initial = {
   name: "",
   email: "",

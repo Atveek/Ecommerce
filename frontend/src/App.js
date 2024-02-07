@@ -11,7 +11,7 @@
 // import ProductDetail from "./components/Buyer/ProductDetail";
 // import Navbar from "./components/Navbar";
 // import { useState, useEffect } from "react";
-// import { getToken, getUserRole } from "./components/getUserInfo";
+// import { getToken, getUserRole } from "./components/Auth/getUserInfo";
 // import Category from "./components/Category";
 // // import SidePanel from "./components/SidePanel";
 
@@ -88,7 +88,7 @@ import Home from "./components/Buyer/Home";
 // import ProductDetail from "./components/Buyer/ProductDetail";
 // import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
-import { getToken, getUserRole } from "./components/getUserInfo";
+import { getToken, getUserRole } from "./components/Auth/getUserInfo";
 import SellerHome from "./components/Seller/SellerHome";
 // import Category from "./components/Category";
 // import SidePanel from "./components/SidePanel";

@@ -12,7 +12,6 @@ async function findproduct(condition) {
 async function findOneproduct(condition) {
   try {
     const product = await productList.findOne(condition);
-    console.log(product, "Product are find");
     return product;
   } catch (err) {
     console.log(err);

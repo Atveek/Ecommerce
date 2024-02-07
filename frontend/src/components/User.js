@@ -2,7 +2,7 @@ import React from "react";
 import BuyerHome from "./Buyer/BuyerHome";
 import SellerHome from "./Seller/SellerHome";
 import { useEffect, useState } from "react";
-import { getUserRole } from "./getUserRole";
+import { getUserRole } from "./Auth/getUserRole";
 import Home from "./Default/Home";
 
 export default function User() {

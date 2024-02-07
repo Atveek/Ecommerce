@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getToken } from "../getUserInfo";
+import { getToken } from "../Auth/getUserInfo";
 
 const Productadded = () => {
   const [products, setProducts] = useState([]);

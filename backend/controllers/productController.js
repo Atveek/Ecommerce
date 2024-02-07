@@ -18,8 +18,6 @@ async function addProduct(req, res) {
       images,
     } = req.body;
 
-    console.log(user);
-
     const product = new productList({
       title,
       category,
@@ -34,7 +32,6 @@ async function addProduct(req, res) {
       seller: user,
     });
     const result = await product.save();
-    console.log(result);
     res.send(result);
   } catch (err) {
     console.log(err);
@@ -67,7 +64,6 @@ async function selectedProduct(req, res) {
     const product = await findOneproduct({
       _id: req.params.productid,
     });
-    console.log(product);
     res.json(product);
   } catch (err) {
     console.log(err);

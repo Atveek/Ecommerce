@@ -5,7 +5,6 @@ async function addCategory(req, res) {
   try {
     const addcategory = new category(req.body);
     const result = await addcategory.save();
-    console.log(result);
     res.json(result);
   } catch (err) {
     console.log(err);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Productdescription from "./Productdescription";
 
-export default function ProductDetail() {
+export default function Productitem() {
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
   const { category, productid } = useParams();
@@ -40,8 +40,8 @@ export default function ProductDetail() {
     );
   };
   return (
-    <div className="flex flex-col bg-white m-3 justify-start md:flex-row">
-      <div className="block relative w-full md:w-[65%] lg:w-[50%] ">
+    <div className="flex flex-col bg-white m-3  justify-start md:flex-row">
+      <div className="block relative h-fit m-2 md:ml-5 border-[1px] border-black md:mt-5 md:w-[65%] lg:w-[50%] ">
         {images.length >= 2 && (
           <button className="absolute left-2 top-1/2" onClick={handlePrevImage}>
             <img
@@ -54,7 +54,7 @@ export default function ProductDetail() {
         {images.map((image, index) => (
           <img
             key={index}
-            className="h-[400px] w-[430px] mix-blend-normal object-contain p-5 sm:py-10 sm:h-[450px] py-[auto] border-[1px] border-black  sm:w-[auto] md:h-[600px] md:w-[auto]"
+            className="h-[400px] w-[430px] mix-blend-normal object-contain p-5 sm:py-10 sm:h-[450px] py-[auto]  sm:w-[auto] md:h-[600px] mx-auto  md:w-[auto]"
             src={image}
             alt={`Product`}
             style={{
