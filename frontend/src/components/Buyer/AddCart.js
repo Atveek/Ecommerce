@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { getToken } from "../Auth/getUserInfo";
 import axios from "axios";
 import Bill from "./Bill";
+import { useNavigate } from "react-router-dom";
 
 export default function AddCart() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -189,7 +191,21 @@ export default function AddCart() {
           </div>
         </>
       )}
-      {products.length === 0 && <p className="text-4xl">Go to Shop</p>}
+      {products.length === 0 && (
+        <div className="flex  flex-col flex-1 bg-white justify-center items-center rounded-lg">
+          <img src="/image/emptycart.png" className="w-64" alt="Go to shop" />
+          <h1 className="text-4xl mb-3">Your cart is empty!</h1>
+          <p className="mb-3"> Add items to it now.</p>
+          <button
+            className="bg-blue-500 py-3 px-8 rounded-lg"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Shop now
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -6,13 +6,10 @@ const { deleteCart } = require("../controllers/cartController");
 async function addOrder(req, res) {
   try {
     const user = req.user.userid;
-    console.log(user);
     const cartOrder = await cart.findOne({ user });
     const orderResults = [];
     for (const product of cartOrder.products) {
       const productItem = await findOneproduct({ _id: product.product });
-      console.log(productItem);
-
       const order1 = new order({
         user,
         seller: productItem.seller,
@@ -23,7 +20,6 @@ async function addOrder(req, res) {
       });
 
       const result = await order1.save();
-      console.log(result);
       orderResults.push(result);
     }
     await deleteCart(user);
@@ -37,16 +33,17 @@ async function addOrder(req, res) {
 async function shawOrder(req, res) {
   try {
     const user = req.user.userid;
-    console.log(user);
     const orders = await order.find({ user });
-    console.log(orders);
     const productlist = [];
     for (const orderItem of orders) {
       const productItem = await findOneproduct({
         _id: orderItem.product, // Access product ID from orderItem
       });
       const productdetail = {};
+      productdetail.productid = productItem.id; // Use 'product' as key for product id
       productdetail.product = productItem.title; // Use 'product' as key for product title
+      productdetail.thumbnail = productItem.thumbnail; //Use 'product' as key for product thumbnail
+      productdetail.category = productItem.category; //Use 'product' as key for product category
       productdetail.id = orderItem._id; // Use 'product' as key for product title
       productdetail.quantity = orderItem.quantity; // Access quantity from orderItem
       productdetail.status = orderItem.status; // Access status from orderItem

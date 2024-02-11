@@ -21,7 +21,6 @@ async function addCart(req, res) {
       console.log(product);
 
       const itemAlreadyExist = result.products.filter((item) => {
-        console.log(item, item.product);
         if (item.product == product) {
           return item;
         }
@@ -103,7 +102,6 @@ async function updateQuantity(req, res) {
 async function deleteCart(user) {
   try {
     const result = await cart.deleteOne({ user });
-    console.log(result);
   } catch (err) {
     console.log(err);
   }

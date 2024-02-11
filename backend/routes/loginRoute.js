@@ -4,6 +4,7 @@ const { user } = require("../model/userSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = process.env.secret;
+
 route.post("/", async (req, res) => {
   try {
     const { email, password } = req.body;

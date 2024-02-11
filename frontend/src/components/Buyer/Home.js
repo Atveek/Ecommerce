@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Productitem from "./Productitem";
 import AddCart from "./AddCart";
 import Ordered from "./Ordered";
+import BuyerAccount from "./BuyerAccount";
 
 export default function Home({ user }) {
   return (
@@ -16,6 +17,7 @@ export default function Home({ user }) {
         <Route exact path="/" element={<ProductList />}></Route>
         <Route path="/cart" element={<AddCart />} />
         <Route path="/order" element={<Ordered />} />
+        <Route path="/account" element={<BuyerAccount />} />
         <Route exact path="/:category" element={<ProductList />} />
         <Route exact path="/:productid" element={<Productitem />} />
         <Route exact path="/:category/:productid" element={<Productitem />} />

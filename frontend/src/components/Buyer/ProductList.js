@@ -1,4 +1,3 @@
-// ProductList.js
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getToken } from "../Auth/getUserInfo";
@@ -14,11 +13,9 @@ const ProductList = () => {
         const token = getToken();
         console.log(token);
 
-        // Construct the fetch URL based on the category value
         const fetchUrl =
           category === undefined ? "/product/buyer" : `/product/${category}`;
 
-        // Fetch product data from your server with JWT token in the header
         const response = await fetch(fetchUrl, {
           headers: {
             token: `${token}`,
@@ -50,13 +47,13 @@ const ProductList = () => {
   }
 
   return (
-    <div className="flex flex-col rounded-md flex-grow justify-center items-center bg-white m-3">
-      <ul className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-5">
+    <div className="flex flex-col rounded-md flex-grow justify-center items-cente m-3">
+      <ul className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-5">
         {Array.isArray(products) &&
           products.map((product) => (
             <li
               key={product._id}
-              className="p-4 bg-white shadow-md rounded-md cursor-pointer"
+              className="p-4 bg-white shadow-md rounded-md border-2 b cursor-pointer hover:shadow-xl hover:scale-[1.025] duration-300 hover:border-black"
               onClick={() => handleClick(product._id, product.category)}
             >
               <img
@@ -66,7 +63,11 @@ const ProductList = () => {
               />
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-                <p className="text-gray-700 mb-4">{product.description}</p>
+                <p className="text-gray-700 mb-4">
+                  {product.description.length > 60
+                    ? `${product.description.substring(0, 60)}...`
+                    : product.description}
+                </p>
                 <span className="text-base p-1 bg-gray-500 font-bold text-white rounded-md px-2">
                   {product.rating}
                   <img
